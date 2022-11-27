@@ -1,0 +1,50 @@
+.notfound-heading {
+  font-family: 'Bree serif';
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.notfound-description {
+  font-family: 'Bree serif';
+  color: #f8fafc;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.notfound-container {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 25px;
+}
+
+.notfound-img {
+  height: 300px;
+  margin-bottom: 30px;
+  width: 50%;
+}
+
+@media screen and (min-height: 767px) {
+  .notfound-heading {
+    font-size: 40px;
+  }
+  .notfound-img {
+    height: 300px;
+    margin-bottom: 30px;
+    width: 50%;
+  }
+}
+
+@media screen and (max-height: 767px) {
+  .notfound-heading {
+    font-size: 30px;
+  }
+  .notfound-img {
+    height: 400px;
+    margin-bottom: 30px;
+  }
+}

@@ -1,0 +1,91 @@
+.card-logo {
+  height: 90px;
+  width: 90px;
+  margin-right: 20px;
+}
+
+.JobItem-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  background-color: #121212;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  padding: 25px;
+}
+.logo-title-rating-container {
+  display: flex;
+  align-items: center;
+}
+.star-rating-container {
+  display: flex;
+  align-items: center;
+}
+.title-rating-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.loc-intern_package-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.loc-intern-container {
+  display: flex;
+  align-items: center;
+}
+.location-container {
+  display: flex;
+  align-items: center;
+  margin-right: 25px;
+}
+.intern-container {
+  display: flex;
+  align-items: center;
+}
+.title {
+  font-size: 25px;
+  font-family: 'Roboto';
+  font-weight: 600;
+  color: #ffffff;
+}
+.star-icon {
+  color: yellow;
+  margin-right: 6px;
+}
+.rating {
+  font-size: 18px;
+  font-family: 'Roboto';
+  font-weight: 600;
+  color: #ffffff;
+}
+.react-icon {
+  color: #ffffff;
+  margin-right: 7px;
+}
+.icon-text {
+  color: #ffffff;
+  font-size: 14px;
+  font-family: 'Roboto';
+}
+.horizental-line {
+  border: 1px solid #ffffff;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.description {
+  font-family: 'Roboto';
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+}
+.description-text {
+  font-family: 'Roboto';
+  color: #ffffff;
+  font-size: 15px;
+  line-height: 1.5;
+}
