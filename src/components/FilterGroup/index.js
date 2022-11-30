@@ -4,14 +4,23 @@ import JobProfile from '../JobProfile'
 
 const FilterGroup = props => {
   const {
-    onChangeSeachInput,
-    onEnterSearchInput,
+    changeSearchInput,
     getJobItemsData,
-    changeEmployementItem,
+    changeEmploymentItem,
     changeSalaryRange,
-    activeEmployementtypeId,
     activeSalaryRangeId,
+    activeEmployementTypeId,
+    searchInput,
   } = props
+
+  const onChangeSearchInput = event => {
+    changeSearchInput(event)
+  }
+  const onEnterSearchInput = event => {
+    if (event.key === 'ENTER') {
+      getJobItemsData()
+    }
+  }
 
   const renderSalaryRangesList = () => {
     const {salaryRangesList} = props
@@ -52,31 +61,27 @@ const FilterGroup = props => {
 
     return (
       <ul className="ul-list">
-        {employmentTypesList.map(employementType => {
+        {employmentTypesList.map(employmentType => {
           const onChangeEmploymentType = () =>
-            changeEmployementItem(employementType.employementTypeId)
+            changeEmploymentItem(employmentType.employmentTypeId)
 
-          const employementClassName =
-            activeEmployementtypeId === employementType.activeEmployementtypeId
-              ? 'kk active'
-              : 'kk'
           return (
             <li
               className="list-item"
-              key={employementType.employementTypeId}
+              key={employmentType.employmentTypeId}
               onChange={onChangeEmploymentType}
             >
               <input
                 type="checkbox"
-                className="employement-type-input"
-                id={employementType.employementTypeId}
-                value={employementType.employementTypeId}
+                className={activeEmployementTypeId}
+                id={employmentType.employmentTypeId}
+                value={employmentType.employmentTypeId}
               />
               <label
                 className="employementType-label"
-                htmlFor={employementType.employementTypeId}
+                htmlFor={employmentType.employmentTypeId}
               >
-                {employementType.label}
+                {employmentType.label}
               </label>
             </li>
           )
@@ -85,36 +90,41 @@ const FilterGroup = props => {
     )
   }
 
+  const renderSearchInputForMobile = () => (
+    <div className="searchInput-container-mobile">
+      <input
+        placeholder="Search"
+        type="search"
+        className="input"
+        onChange={onChangeSearchInput}
+        onKeyDown={onEnterSearchInput}
+      />
+      <button
+        type="button"
+        onClick={getJobItemsData}
+        className="search-button-container-mobile"
+      >
+        <BsSearch size="20" className="react-icon" />
+      </button>
+    </div>
+  )
+
   return (
     <div className="filter-group-container">
-      <div className="searchInput-container-mobile">
-        <input
-          placeholder="Search"
-          type="search"
-          className="input"
-          onChange={onChangeSeachInput}
-          onKeyDown={onEnterSearchInput}
-        />
-        <button
-          type="button"
-          onClick={getJobItemsData}
-          className="search-button-container-mobile"
-        >
-          <BsSearch size="20" className="react-icon" />
-        </button>
-      </div>
+      {renderSearchInputForMobile()}
 
       <div className="jobprofile-container">
         <JobProfile />
       </div>
 
-      <hr className="line" />
       <div className="filters-container">
+        <hr className="line" />
         <h1 className="employementType-list-heading">Type of Employment</h1>
         {renderEmployementTypesList()}
         <hr className="line" />
-        {renderSalaryRangesList()}
+
         <h1 className="employementType-list-heading">Salary Range</h1>
+        {renderSalaryRangesList()}
       </div>
     </div>
   )

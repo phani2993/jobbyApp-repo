@@ -1,0 +1,21 @@
+.li-item {
+  display: flex;
+  align-items: center;
+}
+
+.skill-name {
+  font-size: 20px;
+  font-family: 'Roboto';
+  color: #ffffff;
+}
+.skill-image {
+  height: 70px;
+  width: 70px;
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 767px) {
+  .skill-name {
+    font-size: 16px;
+  }
+}

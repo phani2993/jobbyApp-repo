@@ -28,10 +28,11 @@
 
 .failure-description {
   text-align: center;
-  color: #ffffff;
+  color: #b6c5ff;
   font-family: 'Roboto';
-  width: 90%;
   margin-top: 0px;
+  line-height: 1.5;
+  font-size: 14px;
 }
 
 .jobitems-list {
@@ -41,15 +42,54 @@
 .failure-view-container {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
+  margin-bottom: 20px;
 }
 .failure-heading {
-  font-size: 30px;
+  font-size: 40px;
   color: #ffffff;
   font-family: 'Roboto';
   font-weight: 500;
-  line-height: 1.3;
+  line-height: 1.5;
   text-align: centers;
+}
+.failure-img {
+  width: 450px;
+  height: 400px;
+  margin-bottom: 20px;
+}
+.failure-button {
+  background-color: #4f46e5;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 12px;
+  font-family: 'Roboto';
+  font-weight: 500;
+  border: none;
+  outline: none;
+  border-width: 0px;
+  height: 40px;
+  width: 90px;
+  cursor: pointer;
+}
+@media screen and (max-width: 767px) {
+  .failure-img {
+    width: 250px;
+    height: 200px;
+  }
+  .failure-view-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .failure-heading {
+    font-size: 20px;
+  }
+  .failure-description {
+    font-size: 15px;
+  }
 }
 
 @media screen and (min-width: 767px) {
@@ -78,14 +118,14 @@
 
   .input-jobItems-container {
     width: 70%;
-    background-colorr: black;
+    background-color: black;
     display: flex;
     flex-direction: column;
   }
 
   .failure-img {
-    width: 400px;
-    height: 350px;
+    width: 450px;
+    height: 400px;
   }
   .loader-container {
     display: flex;
@@ -105,7 +145,7 @@
     background-color: #272727;
   }
   .failure-description {
-    font-size: 16px;
+    font-size: 15px;
   }
   .filter {
     width: 30%;
@@ -123,21 +163,6 @@
 @media screen and (max-width: 767px) {
   .searchInput-container-desktop {
     display: none;
-  }
-  .failure-img {
-    height: 250px;
-    width: 200px;
-  }
-  .failure-heading {
-    font-size: 24px;
-    color: #ffffff;
-    font-family: 'Roboto';
-    font-weight: 500;
-    line-height: 1.3;
-    text-align: centers;
-  }
-  .failure-description {
-    font-size: 12px;
   }
 
   .loader-container {
@@ -175,5 +200,70 @@
   .filter {
     width: 100%;
     background-color: black;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .no-jobs-view {
+    margin-left: 30px;
+    width: 100%;
+    padding-bottom: 0;
+    margin-top: 0px;
+  }
+}
+
+.no-jobs-img {
+  width: 250px;
+  height: 180px;
+}
+
+@media screen and (min-width: 768px) {
+  .no-jobs-img {
+    width: 459px;
+    height: 315px;
+  }
+}
+
+.no-jobs-heading {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.3px;
+  width: 90%;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .no-jobs-heading {
+    margin-top: 32px;
+    font-size: 42px;
+  }
+}
+
+.no-jobs-description {
+  text-align: center;
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 12px;
+  width: 90%;
+  max-width: 288px;
+  line-height: 1.3;
+}
+
+@media screen and (min-width: 768px) {
+  .no-jobs-description {
+    margin-top: 12px;
+    font-size: 14px;
+    width: 60%;
+    max-width: 466px;
+  }
+  .no-jobs-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 64px;
+    margin-top: 48px;
   }
 }

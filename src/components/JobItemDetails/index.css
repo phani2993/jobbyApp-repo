@@ -1,0 +1,123 @@
+.job-item-details-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #272727;
+  margin-bottom: 20px;
+  padding: 25px;
+  border-radius: 15px;
+}
+.bg-container {
+  background-color: black;
+  padding: 25px;
+  min-height: 100vh;
+}
+
+.job-item-logo-title-rating-container {
+  display: flex;
+  align-items: center;
+}
+.job-item-star-rating-container {
+  display: flex;
+  align-items: center;
+}
+.job-item-title-rating-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.job-item-loc-intern_package-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.job-item-loc-intern-container {
+  display: flex;
+  align-items: center;
+}
+.job-item-location-container {
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+}
+.job-item-intern-container {
+  display: flex;
+  align-items: center;
+}
+.job-item-title {
+  font-size: 25px;
+  font-family: 'Roboto';
+  font-weight: 600;
+  color: #ffffff;
+}
+.job-item-star-icon {
+  color: yellow;
+  margin-right: 8px;
+}
+.job-item-rating {
+  font-size: 18px;
+  font-family: 'Roboto';
+  font-weight: 600;
+  color: #ffffff;
+}
+.job-item-react-icon {
+  color: #ffffff;
+  margin-right: 7px;
+}
+.job-item-icon-text {
+  color: #ffffff;
+  font-size: 14px;
+  font-family: 'Roboto';
+}
+.job-item-horizental-line {
+  border: 1px solid #6a95ce;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.job-item-description {
+  font-family: 'Roboto';
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+}
+.job-item-description-text {
+  font-family: 'Roboto';
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.job-item-card-logo {
+  height: 90px;
+  width: 90px;
+  margin-right: 20px;
+}
+.job-item-heading {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 26px;
+  font-weight: 500;
+}
+.visit-text {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 18px;
+  font-weight: 500;
+  margin-right: 8px;
+  color: #6366f1;
+}
+.visit-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.desc-heading-visit-link-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.visit-react-icon {
+  color: #6366f1;
+}

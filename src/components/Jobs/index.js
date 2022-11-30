@@ -64,7 +64,7 @@ class Jobs extends Component {
     jobItemsList: [],
     apiStatus: apiStatusConstants.initial,
     searchInput: '',
-    activeEmployementtypeId: [],
+    activeEmployementTypeIdList: [],
     activeSalaryRangeId: '',
   }
 
@@ -72,17 +72,46 @@ class Jobs extends Component {
     this.getJobItemsData()
   }
 
-  changeSalaryRange = activeSalaryRangeId => {
-    this.setState({activeSalaryRangeId}, this.getJobItemsData)
+  changeSalaryRange = salary => {
+    this.setState({activeSalaryRangeId: salary}, this.getJobItemsData) // In this salary = salaryRangeId
   }
 
-  changeEmployementItem = id => {
-    this.setState(
-      prevState => ({
-        activeEmployementtypeId: [...prevState.activeEmployementtypeId, id],
-      }),
-      this.getJobItemsData,
-    )
+  changeEmploymentItem = type => {
+    //  this.setState(
+    //    prevState => ({
+    //     activeEmployementTypeIdList: [
+    //      ...prevState.activeEmployementTypeIdList,
+    //     type,
+    //   ],
+    //   }),
+    //  this.getJobItemsData,
+    //  )
+
+    const {activeEmployementTypeIdList} = this.state
+    const isActiveTypeInList = activeEmployementTypeIdList.includes(type)
+
+    //  console.log(isActiveTypeInList)
+    if (isActiveTypeInList === false) {
+      this.setState(
+        prevState => ({
+          activeEmployementTypeIdList: [
+            ...prevState.activeEmployementTypeIdList,
+            type,
+          ],
+        }),
+        this.getJobItemsData,
+      )
+    } else {
+      const filteredData = activeEmployementTypeIdList.filter(
+        eachItem => eachItem !== type,
+      )
+      //   console.log(filteredData)
+      this.setState({activeEmployementTypeIdList: filteredData})
+    }
+  }
+
+  onClickFailureButton = () => {
+    this.getJobItemsData()
   }
 
   renderFailureView = () => (
@@ -94,8 +123,15 @@ class Jobs extends Component {
       />
       <h1 className="failure-heading">Oops! Something Went Wrong</h1>
       <p className="failure-description">
-        We cannot seem to find the page ypu are looking for
+        We cannot seem to find the page you are looking for
       </p>
+      <button
+        onClick={this.onClickFailureButton}
+        className="failure-button"
+        type="button"
+      >
+        Retry
+      </button>
     </div>
   )
 
@@ -107,12 +143,26 @@ class Jobs extends Component {
 
   renderJobItems = () => {
     const {jobItemsList} = this.state
-    return (
+    const renderJobItems = jobItemsList.length > 0
+
+    return renderJobItems ? (
       <ul className="jobitems-list">
         {jobItemsList.map(eachJob => (
           <JobItemCard jobItemDetails={eachJob} key={eachJob.id} />
         ))}
       </ul>
+    ) : (
+      <div className="no-jobs-view">
+        <img
+          src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png"
+          className="no-jobs-img"
+          alt="no jobs"
+        />
+        <h1 className="no-jobs-heading">No Jobs Found</h1>
+        <p className="no-jobs-description">
+          We could not find any jobs. Try other filters.
+        </p>
+      </div>
     )
   }
 
@@ -122,7 +172,7 @@ class Jobs extends Component {
     }
   }
 
-  onChangeSeachInput = event => {
+  changeSearchInput = event => {
     this.setState({searchInput: event.target.value})
   }
 
@@ -134,7 +184,7 @@ class Jobs extends Component {
           placeholder="Search"
           type="search"
           className="input"
-          onChange={this.onChangeSeachInput}
+          onChange={this.changeSearchInput}
           onKeyDown={this.onEnterSearchInput}
           value={searchInput}
         />
@@ -150,10 +200,15 @@ class Jobs extends Component {
   }
 
   getJobItemsData = async () => {
+    const {
+      activeEmployementTypeIdList,
+      activeSalaryRangeId,
+      searchInput,
+    } = this.state
     this.setState({apiStatus: apiStatusConstants.inProgress})
 
     const jwtToken = Cookies.get('jwt_token')
-    const apiUrl = 'https://apis.ccbp.in/jobs'
+    const apiUrl = `https://apis.ccbp.in/jobs?employment_type=${activeEmployementTypeIdList.join()}&minimum_package=${activeSalaryRangeId}&search=${searchInput}`
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
@@ -202,7 +257,11 @@ class Jobs extends Component {
   }
 
   render() {
-    const {activeEmployementtypeId, activeSalaryRangeId} = this.state
+    const {
+      activeEmployementTypeIdList,
+      activeSalaryRangeId,
+      searchInput,
+    } = this.state
     return (
       <>
         <Header />
@@ -210,15 +269,15 @@ class Jobs extends Component {
           <div className="jobs-content">
             <div className="filter">
               <FilterGroup
-                changeEmployementItem={this.changeEmployementItem}
+                changeEmploymentItem={this.changeEmploymentItem}
                 changeSalaryRange={this.changeSalaryRange}
-                onChangeSeachInput={this.onChangeSeachInput}
-                onEnterSearchInput={this.onEnterSearchInput}
+                changeSearchInput={this.changeSearchInput}
                 getJobItemsData={this.getJobItemsData}
                 employmentTypesList={employmentTypesList}
                 salaryRangesList={salaryRangesList}
-                activeEmployementtypeId={activeEmployementtypeId}
+                activeEmployementTypeIdList={activeEmployementTypeIdList}
                 activeSalaryRangeId={activeSalaryRangeId}
+                searchInput={searchInput}
               />
             </div>
             <div className="input-jobItems-container">
