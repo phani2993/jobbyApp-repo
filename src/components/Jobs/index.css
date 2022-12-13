@@ -26,6 +26,11 @@
   min-height: 100vh;
 }
 
+.jobitems-list {
+  padding-left: 0;
+  padding-top: 0;
+}
+
 .failure-description {
   text-align: center;
   color: #b6c5ff;
@@ -35,10 +40,6 @@
   font-size: 14px;
 }
 
-.jobitems-list {
-  padding-left: 0;
-  padding-top: 0;
-}
 .failure-view-container {
   display: flex;
   justify-content: center;

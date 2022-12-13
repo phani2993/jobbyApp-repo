@@ -65,15 +65,19 @@ class Jobs extends Component {
     apiStatus: apiStatusConstants.initial,
     searchInput: '',
     activeEmployementTypeIdList: [],
-    activeSalaryRangeId: '',
+    activeSalaryRangeId: 0,
   }
 
   componentDidMount() {
     this.getJobItemsData()
   }
 
-  changeSalaryRange = salary => {
-    this.setState({activeSalaryRangeId: salary}, this.getJobItemsData) // In this salary = salaryRangeId
+  // changeSalaryRange = salary => {
+  //   this.setState({activeSalaryRangeId: salary}, this.getJobItemsData) // In this salary = salaryRangeId
+  // }
+
+  changeSalary = salary => {
+    this.setState({activeSalaryRangeId: salary}, this.getJobItemsData)
   }
 
   changeEmploymentItem = type => {
@@ -136,7 +140,7 @@ class Jobs extends Component {
   )
 
   renderLoaderView = () => (
-    <div className="loader-container">
+    <div className="loader-container" testid="loader">
       <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
     </div>
   )
@@ -167,7 +171,7 @@ class Jobs extends Component {
   }
 
   onEnterSearchInput = event => {
-    if (event.key === 'ENTER') {
+    if (event.key === 'Enter') {
       this.getJobItemsData()
     }
   }
@@ -190,6 +194,7 @@ class Jobs extends Component {
         />
         <button
           type="button"
+          testid="searchButton"
           onClick={this.getJobItemsData}
           className="search-button-container-desktop"
         >
@@ -257,11 +262,7 @@ class Jobs extends Component {
   }
 
   render() {
-    const {
-      activeEmployementTypeIdList,
-      activeSalaryRangeId,
-      searchInput,
-    } = this.state
+    const {activeEmployementTypeIdList, searchInput} = this.state
     return (
       <>
         <Header />
@@ -270,13 +271,12 @@ class Jobs extends Component {
             <div className="filter">
               <FilterGroup
                 changeEmploymentItem={this.changeEmploymentItem}
-                changeSalaryRange={this.changeSalaryRange}
+                changeSalary={this.changeSalary}
                 changeSearchInput={this.changeSearchInput}
                 getJobItemsData={this.getJobItemsData}
                 employmentTypesList={employmentTypesList}
                 salaryRangesList={salaryRangesList}
                 activeEmployementTypeIdList={activeEmployementTypeIdList}
-                activeSalaryRangeId={activeSalaryRangeId}
                 searchInput={searchInput}
               />
             </div>

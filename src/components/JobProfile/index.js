@@ -54,6 +54,7 @@ class JobProfile extends Component {
     <div className="failure-view">
       <button
         type="button"
+        testid="button"
         className="profile-failure-button"
         onClick={this.getJobProfileData}
       >
@@ -75,7 +76,7 @@ class JobProfile extends Component {
   }
 
   renderLoaderView = () => (
-    <div className="profile-loader-container">
+    <div className="profile-loader-container" testid="loader">
       <Loader type="ThreeDots" color="#ffffff" height="40" width="40" />
     </div>
   )

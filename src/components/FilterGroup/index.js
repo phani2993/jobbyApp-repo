@@ -3,21 +3,15 @@ import {BsSearch} from 'react-icons/bs'
 import JobProfile from '../JobProfile'
 
 const FilterGroup = props => {
-  const {
-    changeSearchInput,
-    getJobItemsData,
-    changeEmploymentItem,
-    changeSalaryRange,
-    activeSalaryRangeId,
-    activeEmployementTypeId,
-    searchInput,
-  } = props
+  const {changeEmploymentItem, activeEmployementTypeId} = props
 
   const onChangeSearchInput = event => {
+    const {changeSearchInput} = props
     changeSearchInput(event)
   }
   const onEnterSearchInput = event => {
-    if (event.key === 'ENTER') {
+    const {getJobItemsData} = props
+    if (event.key === 'Enter') {
       getJobItemsData()
     }
   }
@@ -28,19 +22,23 @@ const FilterGroup = props => {
     return (
       <ul className="ul-list">
         {salaryRangesList.map(salaryRange => {
-          const onChangeSalaryRange = () =>
-            changeSalaryRange(salaryRange.salaryRangeId)
+          const {changeSalary} = props
+
+          const onClickSalary = () => {
+            changeSalary(salaryRange.salaryRangeId)
+          }
 
           return (
             <li
               className="list-item"
               key={salaryRange.salaryRangeId}
-              onChange={onChangeSalaryRange}
+              onClick={onClickSalary}
             >
               <input
                 type="radio"
                 className="employement-type-input"
                 id={salaryRange.salaryRangeId}
+                name="salary"
                 value={salaryRange.salaryRangeId}
               />
               <label
@@ -62,8 +60,8 @@ const FilterGroup = props => {
     return (
       <ul className="ul-list">
         {employmentTypesList.map(employmentType => {
-          const onChangeEmploymentType = () =>
-            changeEmploymentItem(employmentType.employmentTypeId)
+          const onChangeEmploymentType = event =>
+            changeEmploymentItem(event.target.value)
 
           return (
             <li
@@ -90,24 +88,29 @@ const FilterGroup = props => {
     )
   }
 
-  const renderSearchInputForMobile = () => (
-    <div className="searchInput-container-mobile">
-      <input
-        placeholder="Search"
-        type="search"
-        className="input"
-        onChange={onChangeSearchInput}
-        onKeyDown={onEnterSearchInput}
-      />
-      <button
-        type="button"
-        onClick={getJobItemsData}
-        className="search-button-container-mobile"
-      >
-        <BsSearch size="20" className="react-icon" />
-      </button>
-    </div>
-  )
+  const renderSearchInputForMobile = () => {
+    const {getJobItemsData, searchInput} = props
+
+    return (
+      <div className="searchInput-container-mobile">
+        <input
+          placeholder="Search"
+          type="search"
+          className="input"
+          value={searchInput}
+          onChange={onChangeSearchInput}
+          onKeyDown={onEnterSearchInput}
+        />
+        <button
+          type="button"
+          onClick={getJobItemsData}
+          className="search-button-container-mobile"
+        >
+          <BsSearch size="20" className="react-icon" />
+        </button>
+      </div>
+    )
+  }
 
   return (
     <div className="filter-group-container">
