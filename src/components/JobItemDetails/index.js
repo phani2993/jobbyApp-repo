@@ -10,6 +10,8 @@ import SimilarJobItem from '../SimilarJobItem'
 
 import SkillCard from '../SkillCard'
 
+import Header from '../Header'
+
 import './index.css'
 
 const apiStatusConstants = {
@@ -235,7 +237,12 @@ class JobItemDetails extends Component {
   }
 
   render() {
-    return <div className="bg-container">{this.renderCorrespondingView()}</div>
+    return (
+      <>
+        <Header />
+        <div className="bg-container">{this.renderCorrespondingView()}</div>
+      </>
+    )
   }
 }
 

@@ -12,6 +12,7 @@
   background-color: black;
   padding: 25px;
   min-height: 100vh;
+  marginn-top: 25px;
 }
 
 .job-item-logo-title-rating-container {

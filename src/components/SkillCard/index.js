@@ -6,9 +6,11 @@ const SkillCard = props => {
 
   return (
     <li className="li-item">
-      <img src={imageUrl} className="skill-image" alt={name} />
+      <div>
+        <img src={imageUrl} className="skill-image" alt={name} />
 
-      <p className="skill-name">{name}</p>
+        <p className="skill-name">{name}</p>
+      </div>
     </li>
   )
 }
